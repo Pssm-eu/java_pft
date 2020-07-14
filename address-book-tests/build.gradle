@@ -12,6 +12,8 @@ dependencies {
     compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.8'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.6.1'
     testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.5'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '3.141.59'
+
 
 }
 
