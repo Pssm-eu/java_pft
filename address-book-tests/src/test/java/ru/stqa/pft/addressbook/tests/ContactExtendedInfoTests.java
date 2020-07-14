@@ -16,12 +16,11 @@ public class ContactExtendedInfoTests extends TestBase {
   public void ensurePreconditions() {
     app.goTo().mainPage();
     if (app.contact().all().size() == 0) {
-      app.contact().create(new ContactData().withFirstName("t").withLastName("tr")
-              .withAddress("tre").withMobilePhone("1").withHomePhone("2").withWorkPhone("3")
-              .withEmail("qwert").withEmail2("wef").withEmail3("efq"));
+      app.contact().create(new ContactData().withFirstName("TestFirstName").withLastName("TestLastName")
+              .withAddress("TestAddress").withMobilePhone("12345").withHomePhone("54321").withWorkPhone("87655")
+              .withEmail("testmail@gmail.com").withEmail2("testmail2@gmail.com").withEmail3("testmail3@gmail.com"));
     }
   }
-
   @Test
   public void testContactExtendedInfo() {
     ContactData contact = app.contact().all().iterator().next();
