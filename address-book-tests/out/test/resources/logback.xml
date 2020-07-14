@@ -1,8 +1,9 @@
 <configuration debug="true">
     <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+    <property name="log_folder" value="\logs"/>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>test-${bySecond}.log</file>
+        <file>${log_folder}/test-${bySecond}.log</file>
         <append>true</append>
         <immediateFlush>true</immediateFlush>
         <encoder>
