@@ -64,7 +64,6 @@ public class ContactData {
   @Transient
   private String allEmails;
 
-
   @Column (name = "photo")
   @Type(type = "text")
   private String photo;
@@ -72,9 +71,9 @@ public class ContactData {
   @Transient
   private String allMainInfo;
 
-  @ManyToMany
-  @JoinTable(name = "address_in_groups",
-          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
+          inverseJoinColumns = @JoinColumn(name = "group_id"))
   private Set<GroupData> groups = new HashSet<GroupData>();
 
   public ContactData withId(int id) {
@@ -129,11 +128,6 @@ public class ContactData {
 
   public ContactData withAllEmails(String allEmails) {
     this.allEmails = allEmails;
-    return this;
-  }
-
-  public ContactData withGroup(String group) {
-    this.group = group;
     return this;
   }
 
@@ -195,12 +189,12 @@ public class ContactData {
     return allEmails;
   }
 
-  public Groups getGroups() {
-    return new Groups(groups);
-  }
-  
   public String getAllMainInfo() {
     return allMainInfo;
+  }
+
+  public Groups getGroups() {
+    return new Groups(groups);
   }
 
   @Override

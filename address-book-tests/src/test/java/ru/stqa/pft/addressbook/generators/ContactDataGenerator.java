@@ -16,7 +16,6 @@ import java.util.List;
 
 public class ContactDataGenerator {
 
-
   @Parameter(names = "-c", description = "Contact count")
   public int count;
 
@@ -37,7 +36,7 @@ public class ContactDataGenerator {
   }
 
   private void run() throws IOException {
-    List<ContactData> contacts = generateContacts(count);
+    List<ContactData> contacts = genetateContacts(count);
     save(contacts, new File(file));
   }
 
@@ -49,15 +48,13 @@ public class ContactDataGenerator {
     writer.close();
   }
 
-  private List<ContactData> generateContacts(int count) {
+  private List<ContactData> genetateContacts(int count) {
     List<ContactData> contacts = new ArrayList<>();
     for (int i = 0; i < count; i++) {
-      contacts.add(new ContactData().withFirstName("TestFirstName" + i).withLastName("TestLastName" + i)
-              .withAddress("TestAddress" + i)
-              .withMobilePhone("12345" + i).withHomePhone("54321" + i).withWorkPhone("87655" + i)
-              .withEmail(i + "testmail@gmail.com").withEmail2(i + "testmail2@gmail.com")
-              .withEmail3(i + "testmail3@gmail.com"));
+      contacts.add(new ContactData().withFirstName("test" + i).withLastName("lastname" + i). withAddress("address" + i)
+              .withHomePhone("homephone" + i).withMobilePhone("mobilephone" + i).withWorkPhone("workphone" + i)
+              .withEmail("email" + i).withEmail2("email2" + i).withEmail3("email3" + i));
     }
     return contacts;
   }
-  }
+}
