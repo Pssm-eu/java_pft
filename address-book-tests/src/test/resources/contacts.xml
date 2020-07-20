@@ -1,0 +1,17 @@
+<list>
+  <contact>
+    <contactFirstName>first_name 0</contactFirstName>
+    <contactLastName>last name 0</contactLastName>
+    <contactEmail>firstname0@lastname.ru</contactEmail>
+  </contact>
+  <contact>
+    <contactFirstName>first_name 1</contactFirstName>
+    <contactLastName>last name 1</contactLastName>
+    <contactEmail>firstname1@lastname.ru</contactEmail>
+  </contact>
+  <contact>
+    <contactFirstName>first_name 2</contactFirstName>
+    <contactLastName>last name 2</contactLastName>
+    <contactEmail>firstname2@lastname.ru</contactEmail>
+  </contact>
+</list>

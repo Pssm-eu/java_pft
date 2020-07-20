@@ -5,44 +5,59 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import ru.stqa.pft.addressbook.model.*;
-
+import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
 
 public class DbHelper {
 
-  private final SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
-  public DbHelper() {
-    final StandardServiceRegistry regidtry = new StandardServiceRegistryBuilder().configure().build();
-    sessionFactory = new MetadataSources(regidtry).buildMetadata().buildSessionFactory();
-  }
+    public DbHelper() {
+        // A SessionFactory is set up once for an application!
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure() // configures settings from hibernate.cfg.xml
+                .build();
+        sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+    }
 
-  public Groups groups() {
-    Session session = sessionFactory.openSession();
-    session.beginTransaction();
-    List<GroupData> result = session.createQuery("from GroupData").list();
-    session.getTransaction().commit();
-    session.close();
-    return new Groups(result);
-  }
+    public Groups groups() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<GroupData> result = session.createQuery( "from GroupData" ).list();
+        session.getTransaction().commit();
+        session.close();
+        return new Groups(result);
+    }
 
-  public Contacts contacts() {
-    Session session = sessionFactory.openSession();
-    session.beginTransaction();
-    List<ContactData> result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list();
-    session.getTransaction().commit();
-    session.close();
-    return new Contacts(result);
-  }
+    public Contacts contacts() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactData> result = session.createQuery( "from ContactData where deprecated = '0000-00-00'" ).list();
+        session.getTransaction().commit();
+        session.close();
+        return new Contacts(result);
+    }
 
-  public ListOfContactsInGroup groupsWithContact() {
-    Session session = sessionFactory.openSession();
-    session.beginTransaction();
-    List<ContactInGroupData> result = session.createQuery("from ContactInGroupData").list();
-    session.getTransaction().commit();
-    session.close();
-    return new ListOfContactsInGroup(result);
-  }
+    public Contacts contactsInGroup() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactData> result = session.createQuery("from ContactData c where deprecated = '0000-00-00 00:00:00' and size(c.groups) != 0").list();
+        session.getTransaction().commit();
+        session.close();
+        return new Contacts(result);
+    }
+
+    public Contacts ContactsWithoutGroups() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactData> result = session.createQuery("from ContactData c where deprecated = '0000-00-00 00:00:00'").list();
+        session.getTransaction().commit();
+        session.close();
+        return new Contacts(result);
+    }
+
 }
