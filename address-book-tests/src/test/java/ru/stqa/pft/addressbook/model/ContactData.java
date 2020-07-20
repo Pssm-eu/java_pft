@@ -4,83 +4,78 @@ import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "addressbook")
-
+@Table (name = "addressbook")
 public class ContactData {
+
   @Id
-  @Column(name = "id")
+  @Column (name = "id")
   private int id = Integer.MAX_VALUE;
 
   @Expose
-  @Column(name = "firstname")
+  @Column (name = "firstname")
   private String firstName;
 
   @Expose
-  @Column(name = "lastname")
+  @Column (name = "lastname")
   private String lastName;
 
   @Expose
+  @Column (name = "address")
   @Type(type = "text")
-  @Column(name = "address")
   private String address;
 
   @Expose
-  @Column(name = "home")
+  @Column (name = "home")
   @Type(type = "text")
   private String homePhone;
 
   @Expose
-  @Column(name = "mobile")
+  @Column (name = "mobile")
   @Type(type = "text")
   private String mobilePhone;
 
   @Expose
-  @Column(name = "work")
+  @Column (name = "work")
   @Type(type = "text")
   private String workPhone;
 
-  @Expose
   @Transient
   private String allPhones;
 
   @Expose
-  @Transient
+  @Column (name = "email")
+  @Type(type = "text")
   private String email;
 
   @Expose
-  @Transient
+  @Column (name = "email2")
+  @Type(type = "text")
   private String email2;
 
   @Expose
-  @Transient
+  @Column (name = "email3")
+  @Type(type = "text")
   private String email3;
 
-  @Expose
   @Transient
   private String allEmails;
 
-  @Expose
-  @Transient
-  private String group;
+
+  @Column (name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   @Transient
   private String allMainInfo;
 
-  @Type(type = "text")
-  @Column(name = "photo")
-  private String photo;
-
-  public File getPhoto() {
-    return new File(photo);
-  }
-
-  public ContactData withPhoto(File photo) {
-    this.photo = photo.getPath();
-    return this;
-  }
+  @ManyToMany
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
   public ContactData withId(int id) {
     this.id = id;
@@ -200,10 +195,10 @@ public class ContactData {
     return allEmails;
   }
 
-  public String getGroup() {
-    return group;
+  public Groups getGroups() {
+    return new Groups(groups);
   }
-
+  
   public String getAllMainInfo() {
     return allMainInfo;
   }
@@ -225,7 +220,10 @@ public class ContactData {
 
     if (id != that.id) return false;
     if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-    return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
+    if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) return false;
+    return email != null ? email.equals(that.email) : that.email == null;
   }
 
   @Override
@@ -233,6 +231,9 @@ public class ContactData {
     int result = id;
     result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (mobilePhone != null ? mobilePhone.hashCode() : 0);
+    result = 31 * result + (email != null ? email.hashCode() : 0);
     return result;
   }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="sand-box:test" external.linked.project.path="$MODULE_DIR$/../../sand-box" external.root.project.path="$MODULE_DIR$/../../sand-box" external.system.id="GRADLE" external.system.module.group="" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output-test url="file://$MODULE_DIR$/../../sand-box/out/test/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../sand-box/src/test">
+      <sourceFolder url="file://$MODULE_DIR$/../../sand-box/src/test/java" isTestSource="true" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="sand-box.main" />
+    <orderEntry type="library" name="Gradle: org.testng:testng:7.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.beust:jcommander:1.72" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.inject:guice:no_aop:4.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.yaml:snakeyaml:1.21" level="project" />
+    <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:guava:19.0" level="project" />
+  </component>
+  <component name="TestModuleProperties" production-module="sand-box.main" />
+</module>
