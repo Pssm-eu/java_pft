@@ -14,6 +14,8 @@ dependencies {
     compile 'ch.qos.logback:logback-classic:1.2.3'
     compile 'mysql:mysql-connector-java:8.0.8-dmr'
     compile 'org.hibernate:hibernate-core:5.2.11.Final'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '3.141.59'
+
 }
 
 task testGroups(type: Test) {
