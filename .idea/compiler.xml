@@ -5,6 +5,8 @@
       <module name="address-book-tests" target="1.8" />
       <module name="address-book-tests.main" target="1.8" />
       <module name="address-book-tests.test" target="1.8" />
+      <module name="java_pft.address-book-tests.main" target="1.8" />
+      <module name="java_pft.address-book-tests.test" target="1.8" />
       <module name="java_pft.sand-box.main" target="1.8" />
       <module name="java_pft.sand-box.test" target="1.8" />
       <module name="mantis-tests" target="1.8" />
