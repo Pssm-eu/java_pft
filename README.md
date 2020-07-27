@@ -1,2 +1,2 @@
 # java_pft
- java for testers fixed
+Java for testers (QA cource) final
