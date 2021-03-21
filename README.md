@@ -1,2 +1,2 @@
 # java_pft
-Java for testers (QA cource) final
+Курс "Java для тестировщиков"
